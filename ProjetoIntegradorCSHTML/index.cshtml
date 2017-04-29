@@ -1,0 +1,129 @@
+﻿@{
+    Page.Title = "Página Principal";
+    Layout = "_layout.cshtml";
+    var db = WebMatrix.Data.Database.Open("SCS");
+
+    var cliente = db.Query("SELECT * FROM CLIENTE");
+
+    db.Close();
+}
+
+
+<body>
+    
+          
+           
+                    <div class="panel panel-default">
+                       
+                            <div class="col-lg-12">
+                                <h1 class="page-header">Ordem de Serviço em Aberta</h1>
+                            </div>
+
+                        </div>
+                        <!-- /.Painel de Buscar -->
+                        <div class="panel-body" id="tabela" style="border-radius: 0">
+                            <label for="pesquisar">
+                                Pesquisar
+                                <input type="text" name="pesquisar" id="pesquisar">
+                            </label>
+                            <table class="table table-responsive">
+                                <tread>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Cliente</th>
+                                        <th>CPF</th>
+                                        <th>Aparelho</th>
+                                        <th>Data Inicial</th>
+                                        <th>Data Final</th>
+                                        <th>Status</th>
+                   
+                                        
+                                    </tr>
+                                </tread>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Gabriel Oliveira Araújo</td>
+                                        <td>333.333.333-25</td>
+                                        <td>Iphone</td>
+                                        <td>31/07/2019</td>
+                                        <td>08/08/2017</td>
+                                        <td>Aberta</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Rafael Almeida Oliveira</td>
+                                        <td>487.587.552-55</td>
+                                        <td>J7-Samsung</td>
+                                        <td>01/07/2019</td>
+                                        <td>09/07/2017</td>
+                                        <td>Aberta</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Jorge Vilaça</td>
+                                        <td>785.548.545-52</td>
+                                        <td>Galaxy Note</td>
+                                        <td>05/01/2019</td>
+                                        <td>08/08/2017</td>
+                                        <td>Aberta</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Autran Almeida</td>
+                                        <td>478.524.254-52</td>
+                                        <td>Galaxy S4</td>
+                                        <td>31/02/2017</td>
+                                        <td>08/03/2017</td>
+                                        <td>Aberta</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Anderson Oliveira Araújo</td>
+                                        <td>333.333.333-25</td>
+                                        <td>Iphone</td>
+                                        <td>31/07/2019</td>
+                                        <td>08/08/2017</td>
+                                        <td>Aberta</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Almir dos Santos</td>
+                                        <td>452.542.333-25</td>
+                                        <td>Galaxy S1</td>
+                                        <td>31/07/2019</td>
+                                        <td>08/08/2017</td>
+                                        <td>Aberta</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Maria Pereira Oliveira Araújo</td>
+                                        <td>333.333.333-25</td>
+                                        <td>Motorola</td>
+                                        <td>31/07/2019</td>
+                                        <td>08/08/2017</td>
+                                        <td>Aberta</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                </div>
+                <!-- /.panel .chat-panel -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+
+</body>
+

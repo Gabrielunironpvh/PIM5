@@ -1,0 +1,86 @@
+﻿@{
+    string nomeArquivo = "";
+    string ext = "";
+    string caminhoRelativo = "";
+
+
+    Validation.RequireField("descricao", "A descrição do serviço é obrigatorio");
+    Validation.RequireField("observacao", "A observação do serviço é obrigatorio");
+    Validation.RequireField("valor", "O valor do serviço é obrigatorio");
+    
+
+    Validation.Add("nomeVeiculo", Validator.StringLength(20, 2, "O nome deve ser maior que 2 e menor que 20"));
+    Validation.Add("modelo", Validator.StringLength(20, 2, "As observações do serviço deve ser maior que 2 e menor que 20"));
+    Validation.Add("ano", Validator.Integer("O valor deve ser um numero inteiro"));
+    
+    
+   
+
+
+
+    if (IsPost && Validation.IsValid())
+    {
+
+
+        var db = WebMatrix.Data.Database.Open("SCS");
+        var Sql = "insert into Servico(descricao, observacao, valor) values(@0, @1, @2)";
+        int result = db.Execute(Sql, Request.Form["Descricao"], Request.Form["Observacao"], Request.Form["valor"].AsDecimal());
+        db.Close();
+        if (result == 1)
+        {
+            Response.Redirect("~/serviço");
+        }
+
+    }
+
+
+    Page.Title = "Página Detalhe de Veículo";
+    Layout = "_layout.cshtml";
+
+
+}
+@nomeArquivo
+@ext
+@Html.ValidationSummary()
+
+
+       
+            <div class="row">
+                <div class="col-lg-12" id="interface">
+                    <h1>
+                        Novo Serviço
+                    </h1>
+                    <div class="col-lg-12 borda-cadastro">
+                        <form method="post" action="">
+                            <fieldset class="grupo">
+                                <legend>Dados do Serviço</legend>
+                                <div class="form-group col-lg-8">
+                                    <label for="nome">Descrição</label>
+                                    <input type="text" class="form-control " name="Descricao" id="descricao" />
+                                </div>
+
+                            </fieldset>
+                            <fieldset class="grupo">
+                                <div class="form-group col-lg-4">
+                                    <label for="contato">Valor</label>
+                                    <input type="text" class="form-control" name="Valor" id="valor" value="" />
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="Cpf">Observação</label>
+                                    <input type="text" class="form-control" name="Observacao" id="observacao" value="" />
+                                </div>
+
+
+                            </fieldset>
+                            
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-success"> Salvar</button>
+                                <button type="reset" class="btn btn-default" name="reset">Limpar</button>
+                            </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+

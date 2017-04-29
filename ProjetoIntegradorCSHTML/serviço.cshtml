@@ -1,0 +1,97 @@
+﻿
+@{
+    Layout = "_layout.cshtml";
+    var conexão = WebMatrix.Data.Database.Open("SCS");
+
+    var servico = conexão.Query("select * from Servico");
+
+    conexão.Close();
+}
+
+
+
+
+<body>
+    
+   
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="panel panel-default">
+
+                                            <div class="col-lg-12">
+
+                                                <br />
+                                                <a href="~/cadastrar_serviço.cshtml" class="btn btn-primary btn-lg"> + Adicionar Serviço</a>
+                                            </div>
+
+                                            <div class="col-lg-12" id="tabela">
+                                                <center> <h2>Informações do Serviço</h2>      </center>
+                                                <thead>
+                                                    <tr>
+                                                        <th class="nome-cliente">Descrição</th>
+                                                        <th class="telefone-cliente">Observação</th>
+                                                        <th class="CPF"> Valor </th>
+                                                     
+                                                        <th data-orderable="false" id="acoes"><font color="#FFFFFF">InformaçõesDosCliesssd</font></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var s in servico)
+                                                    {
+                                                        <tr class="odd gradeX">
+                                                            <td>@s.Descricao</td>
+                                                            <td>@s.Observacao </td>
+                                                            <td>R$ @s.Valor</td>
+                                                          
+
+                                                            <td class="btnAcoes">
+
+
+                                                                <a href="~/cadastrar_serviço.cshtml" class="btn btn-info">Atualizar</a>
+                                                                <button type="button" class="btn btn-danger" onclick="return confirm('DESEJA REALMENTE EXCLUIR O SERVIÇO?');">Remover</button>
+
+
+
+
+
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+</body>

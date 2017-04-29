@@ -1,0 +1,179 @@
+﻿@{
+    Layout = "_layoutTabela.cshtml";
+    var conexão = WebMatrix.Data.Database.Open("SCS");
+
+    var funcionario = conexão.Query("select * from FUNCIONARIO");
+
+    conexão.Close();
+}
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>ClikOrdem</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/icone-font.css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div id="wrapper">
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/index.cshtml"><i></i><font color="#000000"> GR Serviços Eletronico</font> </a>
+            </div>
+            <!--navbar-->
+            <ul class="nav navbar-top-links navbar-right">
+                <!--dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+
+                        <i class="icon-doc-cont"></i> Sair do Sistema
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!--dropdown-user -->
+                </li>
+                <!--dropdown -->
+            </ul>
+            <!--navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li><a href="~/index.cshtml"><font color="#000000"><b class="">  Painel de Controle</b></font></a></li>
+                        <li><a href="~/cliente.cshtml"><font color="#000000"><b class="icon-users">  Cliente</b></font></a></li>
+
+                        <li><a href="~/serviço.cshtml"><font color="#000000"><b class="icon-doc-text-inv"> Serviços</b></font></a></li>
+                        <li><a href="~/OrdemDeServiço.cshtml"><font color="#000000"><b class="icon-suitcase">  Ordem de Serviço</b></font></a></li>
+                        <li><a href="~/Funcionario.cshtml"><font color="#000000"><b class="icon-users">  Funcionario</b></font></a></li>
+
+                        <li><a href="PesquisarServiço.html"><font color="#000000"><b class="icon-cog"> Relatorios </b></font></a></li>
+                        <li><a href="PesquisarServiço.html"><font color="#000000"><b class="icon-cog"> Configurações </b></font></a></li>
+
+
+                    </ul>
+                </div>
+
+
+            </div>
+
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="col-lg-12">
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="panel panel-default">
+
+                                            <div class="col-lg-12">
+
+                                                <br />
+
+                                            </div>
+
+                                            <div class="col-lg-12" id="tabela">
+                                                <center> <h2>Informações dos Funcionarios</h2>      </center>
+                                                <thead>
+                                                    <tr>
+                                                        <th class="nome-cliente">Nome</th>
+                                                        <th class="telefone-cliente">contato</th>
+                                                        <th class="CPF"> CPF</th>
+                                                        <th class="CPF"> Endereço</th>
+                                                        <th class="CPF"> Bairro</th>
+                                                        <th class="CPF"> Cidade</th>
+                                                        <th class="CPF"> Nivel de acesso</th>
+
+                                                        <th data-orderable="false" id="acoes"><font color="#FFFFFF">InformaçõesDosCliesssd</font></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var f in funcionario)
+                                                    {
+                                                        <tr class="odd gradeX">
+                                                            <td>@f.nome</td>
+                                                            <td>@f.contato</td>
+                                                            <td>@f.Cpf</td>
+                                                            <td>@f.Endereco</td>
+                                                            <td>@f.Bairro</td>
+                                                            <td>@f.Cidade</td>
+                                                            <td>@f.NiveldeAcesso</td>
+
+                                                            <td class="btnAcoes">
+
+
+                                                                <a href="~/cadastrar_funcionario.cshtml" class="btn btn-info">Atualizar</a>
+                                                                <button type="button" class="btn btn-danger" onclick="return confirm('DESEJA REALMENTE EXCLUIR O FUNCIONARIO?');">Remover</button>
+
+
+
+
+
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+</body>
+</html>
